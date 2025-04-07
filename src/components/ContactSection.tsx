@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -16,7 +15,9 @@ const ContactSection = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
@@ -24,7 +25,7 @@ const ContactSection = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     // Simulate form submission
     setTimeout(() => {
       setIsSubmitting(false);
@@ -40,14 +41,15 @@ const ContactSection = () => {
     <section id="contact" className="py-20 bg-white">
       <div className="section-container">
         <h2 className="section-title">Get In Touch</h2>
-        
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-16">
           <div>
             <h3 className="text-2xl font-bold mb-6">Contact Information</h3>
             <p className="text-gray-600 mb-8">
-              Have a project in mind or want to chat? Fill out the form or contact me directly using the information below.
+              Have a project in mind or want to chat? Fill out the form or
+              contact me directly using the information below.
             </p>
-            
+
             <div className="space-y-6">
               <div className="flex items-start">
                 <div className="flex-shrink-0 mt-1">
@@ -55,40 +57,49 @@ const ContactSection = () => {
                 </div>
                 <div className="ml-4">
                   <h4 className="text-lg font-semibold">Email</h4>
-                  <a href="mailto:john.doe@example.com" className="text-gray-600 hover:text-portfolio-blue transition-colors">
-                    john.doe@example.com
+                  <a
+                    href="mailto:john.doe@example.com"
+                    className="text-gray-600 hover:text-portfolio-blue transition-colors"
+                  >
+                    sanujansanu1998@gmail.com
                   </a>
                 </div>
               </div>
-              
+
               <div className="flex items-start">
                 <div className="flex-shrink-0 mt-1">
                   <Phone className="h-6 w-6 text-portfolio-blue" />
                 </div>
                 <div className="ml-4">
                   <h4 className="text-lg font-semibold">Phone</h4>
-                  <a href="tel:+11234567890" className="text-gray-600 hover:text-portfolio-blue transition-colors">
-                    +1 (123) 456-7890
+                  <a
+                    href="tel:+11234567890"
+                    className="text-gray-600 hover:text-portfolio-blue transition-colors"
+                  >
+                    +94 75 628 9756
                   </a>
                 </div>
               </div>
-              
+
               <div className="flex items-start">
                 <div className="flex-shrink-0 mt-1">
                   <MapPin className="h-6 w-6 text-portfolio-blue" />
                 </div>
                 <div className="ml-4">
                   <h4 className="text-lg font-semibold">Location</h4>
-                  <p className="text-gray-600">San Francisco, California</p>
+                  <p className="text-gray-600">
+                    Karaitivu, Ampara, Sri Lanka , 32250
+                  </p>
                 </div>
               </div>
             </div>
-            
+
             <div className="mt-12">
               <h3 className="text-2xl font-bold mb-6">Availability</h3>
               <p className="text-gray-600">
-                I'm currently available for freelance work or full-time positions.
-                I'm also open to discussing potential collaborations or project ideas.
+                I'm currently available for freelance work or full-time
+                positions. I'm also open to discussing potential collaborations
+                or project ideas.
               </p>
               <div className="mt-4 inline-block bg-green-100 px-4 py-2 rounded-full">
                 <p className="font-medium text-green-800 text-sm flex items-center">
@@ -98,15 +109,18 @@ const ContactSection = () => {
               </div>
             </div>
           </div>
-          
+
           <div>
             <div className="bg-gray-50 p-8 rounded-lg shadow-md">
               <h3 className="text-2xl font-bold mb-6">Send me a message</h3>
-              
+
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="space-y-4">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label
+                      htmlFor="name"
+                      className="block text-sm font-medium text-gray-700 mb-1"
+                    >
                       Your Name
                     </label>
                     <Input
@@ -119,9 +133,12 @@ const ContactSection = () => {
                       placeholder="John Doe"
                     />
                   </div>
-                  
+
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label
+                      htmlFor="email"
+                      className="block text-sm font-medium text-gray-700 mb-1"
+                    >
                       Email Address
                     </label>
                     <Input
@@ -134,9 +151,12 @@ const ContactSection = () => {
                       placeholder="john@example.com"
                     />
                   </div>
-                  
+
                   <div>
-                    <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label
+                      htmlFor="subject"
+                      className="block text-sm font-medium text-gray-700 mb-1"
+                    >
                       Subject
                     </label>
                     <Input
@@ -149,9 +169,12 @@ const ContactSection = () => {
                       placeholder="Project Inquiry"
                     />
                   </div>
-                  
+
                   <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label
+                      htmlFor="message"
+                      className="block text-sm font-medium text-gray-700 mb-1"
+                    >
                       Message
                     </label>
                     <Textarea
@@ -165,9 +188,9 @@ const ContactSection = () => {
                     />
                   </div>
                 </div>
-                
-                <Button 
-                  type="submit" 
+
+                <Button
+                  type="submit"
                   className="w-full bg-portfolio-blue hover:bg-portfolio-darkBlue"
                   disabled={isSubmitting}
                 >
