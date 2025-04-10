@@ -52,7 +52,7 @@ const HeroSection = () => {
                 <Github className="h-6 w-6" />
               </a>
               <a
-                href="www.linkedin.com/in/sri-sanujan"
+                href="https://www.linkedin.com/in/sri-sanujan"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-600 hover:text-portfolio-blue transition-colors"
