@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
-
+import CVpdf from "../assets/Sri-Sanujan-Resume.pdf";
 const navLinks = [
   { name: "Home", href: "#home" },
   { name: "About", href: "#about" },
@@ -94,9 +94,11 @@ const Navbar = () => {
               </a>
             ))}
             <div className="pt-2">
-              <Button className="w-full bg-portfolio-blue hover:bg-portfolio-darkBlue">
-                Resume
-              </Button>
+              <a href={CVpdf} target="_blank" rel="noopener noreferrer">
+                <Button className="w-full bg-portfolio-blue hover:bg-portfolio-darkBlue">
+                  Resume
+                </Button>
+              </a>
             </div>
           </div>
         </div>

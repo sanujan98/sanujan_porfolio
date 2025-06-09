@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import About from "../assets/IMG_0036.jpg";
+import CVpdf from "../assets/Sri-Sanujan-Resume.pdf";
 const AboutSection = () => {
   return (
     <section id="about" className="py-20 bg-white">
@@ -44,9 +45,11 @@ const AboutSection = () => {
             </div>
 
             <div className="mt-8">
-              <Button className="bg-portfolio-blue hover:bg-portfolio-darkBlue">
-                Download Resume
-              </Button>
+              <a href={CVpdf} download="Sri-Sanujan-Resume.pdf">
+                <Button className="bg-portfolio-blue hover:bg-portfolio-darkBlue">
+                  Download Resume
+                </Button>
+              </a>
             </div>
           </div>
 

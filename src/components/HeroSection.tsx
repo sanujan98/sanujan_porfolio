@@ -95,7 +95,7 @@ const HeroSection = () => {
         </div>
 
         <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce hidden md:block">
-          <a href="#about" aria-label="Scroll down">
+          <a href="about" aria-label="Scroll down">
             <ArrowDownCircle className="h-10 w-10 text-portfolio-blue" />
           </a>
         </div>

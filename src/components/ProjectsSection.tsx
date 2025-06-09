@@ -1,14 +1,15 @@
 import { ExternalLink, Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import Commerce from "../assets/p1.png";
 
 const projects = [
   {
     title: "E-Commerce Platform",
     description:
       "A full-stack e-commerce application with user authentication, product management, shopping cart, and payment gateway integration.",
-    image: "/placeholder.svg",
-    tags: ["React", "Node.js", "MongoDB", "Express", "Stripe"],
+    image: `${Commerce}`,
+    tags: ["React", "Nest.js", "PostgreSQL", "Prisma", "Tailwind CSS"],
     liveUrl: "https://example.com",
     repoUrl: "https://github.com",
   },
@@ -56,7 +57,11 @@ const ProjectsSection = () => {
               <div className="w-full h-56 bg-gray-200 relative">
                 {/* Replace with actual project image */}
                 <div className="w-full h-full flex items-center justify-center text-gray-500 font-medium text-lg">
-                  {project.title} Screenshot
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
               </div>
 
