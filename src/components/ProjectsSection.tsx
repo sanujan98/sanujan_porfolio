@@ -2,7 +2,7 @@ import { ExternalLink, Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import Commerce from "../assets/p1.png";
-
+import Buss from "../assets/p2.png";
 const projects = [
   {
     title: "E-Commerce Platform",
@@ -14,11 +14,17 @@ const projects = [
     repoUrl: "https://github.com",
   },
   {
-    title: "Task Management App",
+    title: "Bus Ticket Booking Platform",
     description:
-      "A productivity application for managing tasks, projects, and deadlines with team collaboration features.",
-    image: "/placeholder.svg",
-    tags: ["React", "TypeScript", "Firebase", "Tailwind CSS"],
+      "SeatScape is a modern, responsive web application designed to simplify intercity bus ticket booking. The goal is to create a user-friendly interface where users can search, view, and book bus journeys with minimal effort. The UI emphasizes clarity, accessibility, and seamless user interaction.",
+    image: `${Buss}`,
+    tags: [
+      "React",
+      "TypeScript",
+      "React Router DOM",
+      "Tailwind CSS",
+      "Redux Toolkit",
+    ],
     liveUrl: "https://example.com",
     repoUrl: "https://github.com",
   },

@@ -7,7 +7,10 @@ const SkillsSection = () => {
       skills: ["React", "TypeScript", "Next.js", "HTML5/CSS3", "Tailwind CSS"],
     },
     { category: "Backend", skills: ["Node.js", "Express", "Nest.js"] },
-    { category: "Database", skills: ["MongoDB", "MySQL", "Firebase"] },
+    {
+      category: "Database",
+      skills: ["MongoDB", "PostgreSQL", "MySQL", "Firebase"],
+    },
     {
       category: "DevOps",
       skills: ["Docker", "AWS", "CI/CD", "GitHub Actions", "Netlify/Vercel"],
@@ -17,10 +20,11 @@ const SkillsSection = () => {
   const softSkills = [
     "Problem Solving",
     "Technical Communication",
-    "Team Leadership",
+    "Leadership",
     "Project Management",
     "Adaptability",
     "Time Management",
+    "Work Ethic",
   ];
 
   return (
