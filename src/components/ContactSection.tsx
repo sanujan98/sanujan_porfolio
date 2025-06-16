@@ -39,7 +39,7 @@ const ContactSection = () => {
           console.log("FAILED...", error.text);
         }
       );
-    console.log(formData);
+
     // Simulate form submission
     setTimeout(() => {
       setIsSubmitting(false);
