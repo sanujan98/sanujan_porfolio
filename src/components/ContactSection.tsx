@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
+import emailjs from "@emailjs/browser";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -14,6 +15,7 @@ const ContactSection = () => {
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const formRef = useRef<HTMLFormElement | null>(null);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -25,7 +27,19 @@ const ContactSection = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-
+    emailjs
+      .sendForm("service_zr6jjgj", "template_6qk979l", formRef.current!, {
+        publicKey: "kVW3QDXhXU80eY_-F",
+      })
+      .then(
+        () => {
+          console.log("SUCCESS!");
+        },
+        (error) => {
+          console.log("FAILED...", error.text);
+        }
+      );
+    console.log(formData);
     // Simulate form submission
     setTimeout(() => {
       setIsSubmitting(false);
@@ -114,7 +128,7 @@ const ContactSection = () => {
             <div className="bg-gray-50 p-8 rounded-lg shadow-md">
               <h3 className="text-2xl font-bold mb-6">Send me a message</h3>
 
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} ref={formRef} className="space-y-6">
                 <div className="space-y-4">
                   <div>
                     <label
