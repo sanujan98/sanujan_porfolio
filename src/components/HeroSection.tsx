@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Download, Github, Linkedin, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { TypewriterText } from "./TypewriterText";
-
+import mycv from "../assets/Sanujan_Update_CV.pdf";
 const HeroSection = () => {
   return (
     <section
@@ -97,7 +97,7 @@ const HeroSection = () => {
               </a>
             </Button>
             <Button size="lg" variant="outline" asChild>
-              <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+              <a href={mycv} target="_blank" rel="noopener noreferrer">
                 Download CV
                 <Download className="ml-2 h-4 w-4" />
               </a>

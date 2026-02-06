@@ -9,7 +9,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-
+import mycv from "../assets/Sanujan_Update_CV.pdf";
 const navLinks = [
   { name: "Home", href: "#home" },
   { name: "Projects", href: "#projects" },
@@ -44,7 +44,10 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <a href="#home" className="text-2xl font-bold font-heading text-primary tracking-tighter">
+            <a
+              href="#home"
+              className="text-2xl font-bold font-heading text-primary tracking-tighter"
+            >
               Sanujan <span className="text-foreground">Sri</span>
             </a>
           </div>
@@ -62,7 +65,7 @@ const Navbar = () => {
                 </a>
               ))}
             </div>
-            
+
             <div className="flex items-center space-x-4 pl-4 border-l border-border">
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -88,7 +91,11 @@ const Navbar = () => {
                 </DropdownMenuContent>
               </DropdownMenu>
 
-              <Button asChild size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground">
+              <Button
+                asChild
+                size="sm"
+                className="bg-primary hover:bg-primary/90 text-primary-foreground"
+              >
                 <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
                   Resume
                 </a>
@@ -98,29 +105,29 @@ const Navbar = () => {
 
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center space-x-4">
-             <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" size="icon" className="rounded-full">
-                    <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                    <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-                    <span className="sr-only">Toggle theme</span>
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end">
-                  <DropdownMenuItem onClick={() => setTheme("light")}>
-                    <Sun className="mr-2 h-4 w-4" />
-                    <span>Light</span>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => setTheme("dark")}>
-                    <Moon className="mr-2 h-4 w-4" />
-                    <span>Dark</span>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => setTheme("system")}>
-                    <Laptop className="mr-2 h-4 w-4" />
-                    <span>System</span>
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="icon" className="rounded-full">
+                  <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                  <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                  <span className="sr-only">Toggle theme</span>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem onClick={() => setTheme("light")}>
+                  <Sun className="mr-2 h-4 w-4" />
+                  <span>Light</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setTheme("dark")}>
+                  <Moon className="mr-2 h-4 w-4" />
+                  <span>Dark</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setTheme("system")}>
+                  <Laptop className="mr-2 h-4 w-4" />
+                  <span>System</span>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
 
             <Sheet>
               <SheetTrigger asChild>
@@ -133,7 +140,7 @@ const Navbar = () => {
                 <div className="flex flex-col gap-8 pt-10">
                   <div className="flex flex-col gap-4">
                     {navLinks.map((link) => (
-                       <a
+                      <a
                         key={link.name}
                         href={link.href}
                         className="text-lg font-medium text-foreground hover:text-primary transition-colors block py-2 border-b border-border/50"
@@ -143,16 +150,37 @@ const Navbar = () => {
                     ))}
                   </div>
                   <Button asChild className="w-full">
-                    <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+                    <a href={mycv} target="_blank" rel="noopener noreferrer">
                       Resume
                     </a>
                   </Button>
                   <div className="border-t pt-4">
                     <p className="text-sm text-muted-foreground mb-2">Theme</p>
                     <div className="flex gap-2">
-                      <Button variant="outline" size="sm" onClick={() => setTheme("light")} className="flex-1">Light</Button>
-                      <Button variant="outline" size="sm" onClick={() => setTheme("dark")} className="flex-1">Dark</Button>
-                      <Button variant="outline" size="sm" onClick={() => setTheme("system")} className="flex-1">Auto</Button>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => setTheme("light")}
+                        className="flex-1"
+                      >
+                        Light
+                      </Button>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => setTheme("dark")}
+                        className="flex-1"
+                      >
+                        Dark
+                      </Button>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => setTheme("system")}
+                        className="flex-1"
+                      >
+                        Auto
+                      </Button>
                     </div>
                   </div>
                 </div>
