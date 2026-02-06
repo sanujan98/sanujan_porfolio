@@ -1,6 +1,7 @@
 import { ArrowDownCircle, Github, Linkedin, Twitter } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Profile from "../assets/IMG_0036.png";
+import { TypewriterText } from "./TypewriterText";
 const HeroSection = () => {
   return (
     <section
@@ -17,8 +18,15 @@ const HeroSection = () => {
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900">
               Sanujan Sri
             </h1>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-portfolio-darkGray">
-              Software Developer
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold">
+              <TypewriterText
+                words={[
+                  "Software Developer",
+                  "Full Stack Developer",
+                  "Frontend Engineer",
+                  "Backend Engineer",
+                ]}
+              />
             </h2>
             <p className="text-lg text-gray-600 max-w-xl">
               I build exceptional and accessible digital experiences for the

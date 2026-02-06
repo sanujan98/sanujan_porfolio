@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import About from "../assets/IMG_0036.jpg";
-import CVpdf from "../assets/Sri-Sanujan-Resume.pdf";
+import CVpdf from "../assets/Sanujan_Update_CV.pdf";
 const AboutSection = () => {
   return (
     <section id="about" className="py-20 bg-white">
@@ -80,18 +80,15 @@ const AboutSection = () => {
                 Specialized in Web Technologies and Software Engineering.
               </p>
             </div>
-            {/* <div>
+
+            <div>
               <p className="text-portfolio-blue font-semibold">2014 - 2017</p>
-              <h4 className="text-xl font-bold mt-1">
-               
-               
-              </h4>
-              <p className="text-gray-600">Tech Institute</p>
-              <p className="mt-2">
-                Focus on advanced web application architectures and cloud
-                computing.
+              <h4 className="text-xl font-bold mt-1">GCE Advance Level</h4>
+              <p className="text-gray-600">
+                KM/KM/Vipulananda Central Collage - Karaitivu
               </p>
-            </div> */}
+              <p className="mt-2">Technology Stream (Engineering Technology)</p>
+            </div>
           </div>
         </div>
       </div>

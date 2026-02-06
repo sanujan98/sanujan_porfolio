@@ -14,7 +14,7 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-6 md:mb-0">
             <h2 className="text-2xl font-bold text-portfolio-blue">
-              SanuPortfolio
+              Sanujan Sri
             </h2>
             <p className="text-gray-400 mt-2 max-w-md">
               Building digital experiences that make a difference. Software
