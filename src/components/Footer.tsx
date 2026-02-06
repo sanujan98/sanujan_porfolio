@@ -13,7 +13,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-6 md:mb-0">
-            <h2 className="text-2xl font-bold text-portfolio-blue">
+            <h2 className="text-2xl font-bold text-primary">
               Sanujan Sri
             </h2>
             <p className="text-gray-400 mt-2 max-w-md">
@@ -62,7 +62,7 @@ const Footer = () => {
 
             <button
               onClick={scrollToTop}
-              className="bg-portfolio-blue hover:bg-portfolio-darkBlue text-white p-2 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-portfolio-blue"
+              className="bg-primary hover:bg-primary/90 text-primary-foreground p-2 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
               aria-label="Scroll to top"
             >
               <ArrowUp className="h-5 w-5" />

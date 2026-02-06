@@ -1,4 +1,8 @@
+
 import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { motion } from "framer-motion";
+import { Briefcase } from "lucide-react";
 
 const experiences = [
   {
@@ -35,64 +39,69 @@ const experiences = [
       "Tailwindcss",
     ],
   },
-  // {
-  //   title: "Web Developer Intern",
-  //   company: "StartUp Hub",
-  //   period: "Jun 2019 - Feb 2020",
-  //   description: "Assisted in the development of web applications and gained hands-on experience with modern development practices.",
-  //   achievements: [
-  //     "Contributed to an open-source project with 5K+ GitHub stars",
-  //     "Developed a dashboard for internal use, saving 10+ hours of manual work weekly",
-  //     "Implemented responsive designs from Figma mockups"
-  //   ],
-  //   technologies: ["HTML/CSS", "JavaScript", "jQuery", "Bootstrap", "PHP"]
-  // }
 ];
 
 const ExperienceSection = () => {
   return (
-    <section id="experience" className="py-20 bg-gray-50">
+    <section id="experience" className="py-24 bg-transparent">
       <div className="section-container">
-        <h2 className="section-title">Work Experience</h2>
+        <h2 className="section-title mb-16">Work Experience</h2>
 
-        <div className="mt-16 max-w-4xl mx-auto">
+        <div className="max-w-3xl mx-auto relative">
+           {/* Vertical Line */}
+           <div className="absolute left-0 md:left-8 top-0 bottom-0 w-px bg-border md:block hidden" />
+
           <div className="space-y-12">
             {experiences.map((exp, index) => (
-              <div
+              <motion.div
                 key={index}
-                className="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow border-l-4 border-portfolio-blue"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="relative md:pl-20"
               >
-                <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
-                  <div>
-                    <h3 className="text-xl font-bold">{exp.title}</h3>
-                    <p className="text-portfolio-blue font-medium">
-                      {exp.company}
-                    </p>
-                  </div>
-                  <p className="text-gray-500 mt-2 md:mt-0">{exp.period}</p>
-                </div>
+                 {/* Icon */}
+                 <div className="absolute left-0 md:left-4 -translate-x-1/2 w-8 h-8 rounded-full bg-primary flex items-center justify-center text-primary-foreground shadow-lg z-10 md:flex hidden">
+                    <Briefcase className="w-4 h-4" />
+                 </div>
 
-                <p className="text-gray-700 mb-4">{exp.description}</p>
+                <Card className="border-border bg-card hover:shadow-lg transition-all duration-300">
+                  <CardHeader>
+                    <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-2">
+                      <div>
+                        <CardTitle className="text-xl font-bold">{exp.title}</CardTitle>
+                        <p className="text-primary font-medium mt-1 text-lg">
+                          {exp.company}
+                        </p>
+                      </div>
+                      <Badge variant="outline" className="w-fit">
+                        {exp.period}
+                      </Badge>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <p className="text-muted-foreground">{exp.description}</p>
 
-                <div className="mb-6">
-                  <h4 className="font-semibold mb-2">Key Achievements:</h4>
-                  <ul className="list-disc pl-5 space-y-1">
-                    {exp.achievements.map((achievement, i) => (
-                      <li key={i} className="text-gray-700">
-                        {achievement}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                    <div className="space-y-2">
+                       <h4 className="font-semibold text-sm uppercase tracking-wider text-muted-foreground">Key Achievements</h4>
+                       <ul className="list-disc pl-5 space-y-1 text-sm text-foreground/80">
+                         {exp.achievements.map((achievement, i) => (
+                           <li key={i}>{achievement}</li>
+                         ))}
+                       </ul>
+                    </div>
 
-                <div className="flex flex-wrap gap-2">
-                  {exp.technologies.map((tech) => (
-                    <Badge key={tech} variant="outline" className="bg-gray-50">
-                      {tech}
-                    </Badge>
-                  ))}
-                </div>
-              </div>
+                    <div className="flex flex-wrap gap-2 pt-2">
+                      {exp.technologies.map((tech) => (
+                        <Badge key={tech} variant="secondary" className="font-normal text-xs">
+                          {tech}
+                        </Badge>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
             ))}
           </div>
         </div>
