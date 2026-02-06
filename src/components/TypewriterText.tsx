@@ -48,7 +48,7 @@ export const TypewriterText = ({
   ]);
 
   return (
-    <span className="text-portfolio-blue">
+    <span className="text-foreground/80 text-3xl sm:text-4xl md:text-6xl mt-2 block">
       {text}
       <span className="ml-1 animate-pulse">|</span>
     </span>

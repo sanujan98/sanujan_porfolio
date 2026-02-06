@@ -1,14 +1,16 @@
-import { ExternalLink, Github } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import Commerce from "../assets/p1.png";
 import Buss from "../assets/p2.png";
+import ProjectCard from "./ProjectCard";
+import { ArrowRight } from "lucide-react";
+
 const projects = [
   {
     title: "E-Commerce Platform",
     description:
       "A full-stack e-commerce application with user authentication, product management, shopping cart, and payment gateway integration.",
-    image: `${Commerce}`,
+    image: Commerce,
     tags: ["React", "Nest.js", "PostgreSQL", "Prisma", "Tailwind CSS"],
     liveUrl: "https://example.com",
     repoUrl: "https://github.com",
@@ -17,7 +19,7 @@ const projects = [
     title: "Bus Ticket Booking Platform",
     description:
       "SeatScape is a modern, responsive web application designed to simplify intercity bus ticket booking. The goal is to create a user-friendly interface where users can search, view, and book bus journeys with minimal effort. The UI emphasizes clarity, accessibility, and seamless user interaction.",
-    image: `${Buss}`,
+    image: Buss,
     tags: [
       "React",
       "TypeScript",
@@ -31,17 +33,17 @@ const projects = [
   {
     title: "Weather Dashboard",
     description:
-      "A weather application that displays current conditions and forecasts based on location, with data visualization.",
-    image: "/placeholder.svg",
+      "A weather application that displays current conditions and forecasts based on location, with data visualization using Chart.js.",
+    image: "https://images.unsplash.com/photo-1592210454359-9043f067919b?auto=format&fit=crop&q=80&w=1000",
     tags: ["JavaScript", "Chart.js", "Weather API", "CSS3"],
     liveUrl: "https://example.com",
     repoUrl: "https://github.com",
   },
   {
-    title: "Personal Blog",
+    title: "Personal Blog CMS",
     description:
       "A content management system for publishing articles and blog posts with categorization, tagging, and search functionality.",
-    image: "/placeholder.svg",
+    image: "https://images.unsplash.com/photo-1499750310159-5b600aaf0320?auto=format&fit=crop&q=80&w=1000",
     tags: ["Next.js", "GraphQL", "PostgreSQL", "Tailwind CSS"],
     liveUrl: "https://example.com",
     repoUrl: "https://github.com",
@@ -50,79 +52,36 @@ const projects = [
 
 const ProjectsSection = () => {
   return (
-    <section id="projects" className="py-20 bg-white">
+    <section id="projects" className="py-20 bg-transparent">
       <div className="section-container">
-        <h2 className="section-title">My Projects</h2>
+        <div className="text-center mb-16 space-y-4">
+          <h2 className="section-title">Featured Projects</h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            Here are some of the projects I've worked on, ranging from web applications to full-stack platforms.
+          </p>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
           {projects.map((project, index) => (
-            <div
+            <ProjectCard
               key={index}
-              className="bg-white rounded-lg overflow-hidden border border-gray-100 shadow-md hover:shadow-xl transition-shadow"
-            >
-              <div className="w-full h-56 bg-gray-200 relative">
-                {/* Replace with actual project image */}
-                <div className="w-full h-full flex items-center justify-center text-gray-500 font-medium text-lg">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </div>
-
-              <div className="p-6">
-                <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                <p className="text-gray-600 mb-4">{project.description}</p>
-
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {project.tags.map((tag) => (
-                    <Badge
-                      key={tag}
-                      variant="outline"
-                      className="bg-gray-50 text-portfolio-darkGray"
-                    >
-                      {tag}
-                    </Badge>
-                  ))}
-                </div>
-
-                <div className="flex space-x-4">
-                  <a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center text-portfolio-blue hover:text-portfolio-darkBlue transition-colors"
-                  >
-                    <ExternalLink className="h-4 w-4 mr-1" />
-                    Live Demo
-                  </a>
-                  <a
-                    href={project.repoUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center text-portfolio-blue hover:text-portfolio-darkBlue transition-colors"
-                  >
-                    <Github className="h-4 w-4 mr-1" />
-                    Source Code
-                  </a>
-                </div>
-              </div>
-            </div>
+              index={index}
+              {...project}
+            />
           ))}
         </div>
 
-        <div className="mt-12 text-center">
+        <div className="mt-16 text-center">
           <Button
             asChild
-            className="bg-portfolio-blue hover:bg-portfolio-darkBlue"
+            size="lg"
           >
             <a
               href="https://github.com/sanujan98"
               target="_blank"
               rel="noopener noreferrer"
             >
-              View More on GitHub
+              View More on GitHub <ArrowRight className="ml-2 h-4 w-4"/>
             </a>
           </Button>
         </div>

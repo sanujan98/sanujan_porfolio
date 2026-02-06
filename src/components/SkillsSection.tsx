@@ -1,76 +1,137 @@
-import { CheckCircle2 } from "lucide-react";
+import { motion } from "framer-motion";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Code2,
+  Database,
+  Layout,
+  Settings,
+  Terminal,
+  Wrench,
+} from "lucide-react";
 
 const SkillsSection = () => {
-  const technicalSkills = [
+  const skillCategories = [
     {
-      category: "Frontend",
-      skills: ["React", "TypeScript", "Next.js", "HTML5/CSS3", "Tailwind CSS"],
+      title: "Frontend Development",
+      icon: <Layout className="w-6 h-6 text-primary" />,
+      skills: [
+        "React",
+        "TypeScript",
+        "Next.js",
+        "Tailwind CSS",
+        "Redux",
+        "Shadcn UI",
+        "Ant Design",
+        "MUI",
+        "HTML5/CSS3",
+      ],
     },
-    { category: "Backend", skills: ["Node.js", "Express", "Nest.js"] },
     {
-      category: "Database",
-      skills: ["MongoDB", "PostgreSQL", "MySQL", "Firebase"],
+      title: "Backend Development",
+      icon: <Database className="w-6 h-6 text-primary" />,
+      skills: [
+        "Node.js",
+        "Express.js",
+        "NestJS",
+        "MongoDB",
+        "PostgreSQL",
+        "REST APIs",
+        ".Net",
+      ],
     },
     {
-      category: "DevOps",
-      skills: ["Docker", "AWS", "CI/CD", "GitHub Actions", "Netlify/Vercel"],
+      title: "Tools & DevOps",
+      icon: <Settings className="w-6 h-6 text-primary" />,
+      skills: [
+        "Git",
+        "Docker",
+        "AWS",
+        "CI/CD",
+        "Jest",
+        "Linux",
+        "Vercel",
+        "Azure",
+      ],
+    },
+    {
+      title: "Soft Skills",
+      icon: <Terminal className="w-6 h-6 text-primary" />, // Using Terminal as placeholder or maybe User
+      skills: [
+        "Problem Solving",
+        "Team Leadership",
+        "Communication",
+        "Agile/Scrum",
+        "Mentoring",
+        "Team Collaboration",
+        "Self-Learning & Adaptability",
+        "Time Management",
+      ],
     },
   ];
 
-  const softSkills = [
-    "Problem Solving",
-    "Technical Communication",
-    "Leadership",
-    "Project Management",
-    "Adaptability",
-    "Time Management",
-    "Work Ethic",
-  ];
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0 },
+  };
 
   return (
-    <section id="skills" className="py-20 bg-gray-50">
-      <div className="section-container">
-        <h2 className="section-title">My Skills</h2>
-
-        <div className="mt-16">
-          <h3 className="text-2xl font-bold mb-8 text-center">
-            Technical Skills
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {technicalSkills.map((skillGroup) => (
-              <div
-                key={skillGroup.category}
-                className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
-              >
-                <h4 className="text-xl font-bold mb-4 text-portfolio-blue">
-                  {skillGroup.category}
-                </h4>
-                <ul className="space-y-2">
-                  {skillGroup.skills.map((skill) => (
-                    <li key={skill} className="flex items-center">
-                      <CheckCircle2 className="h-5 w-5 text-portfolio-teal mr-2" />
-                      <span>{skill}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
+    <section
+      id="skills"
+      className="py-20 bg-transparent relative overflow-hidden"
+    >
+      <div className="section-container relative z-10">
+        <div className="text-center mb-16 max-w-2xl mx-auto">
+          <h2 className="section-title">Technical Proficiency</h2>
+          <p className="text-muted-foreground mt-4">
+            A comprehensive overview of my technical expertise and the
+            technologies I work with.
+          </p>
         </div>
 
-        <div className="mt-16">
-          <h3 className="text-2xl font-bold mb-8 text-center">Soft Skills</h3>
-          <div className="flex flex-wrap justify-center gap-4">
-            {softSkills.map((skill) => (
-              <div
-                key={skill}
-                className="bg-white px-6 py-3 rounded-full shadow-md border border-gray-100 hover:shadow-lg transition-shadow"
-              >
-                <span className="font-medium">{skill}</span>
-              </div>
-            ))}
-          </div>
-        </div>
+        <motion.div
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="grid grid-cols-1 md:grid-cols-2 gap-6"
+        >
+          {skillCategories.map((category, idx) => (
+            <motion.div key={idx} variants={item}>
+              <Card className="h-full hover:shadow-lg transition-shadow border-muted bg-card/50 backdrop-blur-sm">
+                <CardHeader className="flex flex-row items-center gap-4 pb-2">
+                  <div className="p-2 rounded-lg bg-primary/10">
+                    {category.icon}
+                  </div>
+                  <CardTitle className="text-xl">{category.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex flex-wrap gap-2">
+                    {category.skills.map((skill) => (
+                      <Badge
+                        key={skill}
+                        variant="secondary"
+                        className="font-normal px-3 py-1 hover:bg-primary/20 transition-colors"
+                      >
+                        {skill}
+                      </Badge>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );

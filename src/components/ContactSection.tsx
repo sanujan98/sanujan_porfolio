@@ -3,8 +3,10 @@ import emailjs from "@emailjs/browser";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin, Phone, Send } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { Card, CardContent } from "@/components/ui/card";
+import { motion } from "framer-motion";
 
 const ContactSection = () => {
   const { toast } = useToast();
@@ -18,201 +20,220 @@ const ContactSection = () => {
   const formRef = useRef<HTMLFormElement | null>(null);
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    emailjs
-      .sendForm("service_zr6jjgj", "template_6qk979l", formRef.current!, {
-        publicKey: "kVW3QDXhXU80eY_-F",
-      })
-      .then(
-        () => {
-          console.log("SUCCESS!");
-        },
-        (error) => {
-          console.log("FAILED...", error.text);
-        }
-      );
 
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
+    // Using actual emailjs if configured, else simulation
+    // Since existing code had keys, I'll keep them but usually they should be env vars.
+    // For now I'll use the existing logic structure.
+
+    try {
+      await emailjs.sendForm(
+        "service_zr6jjgj",
+        "template_6qk979l",
+        formRef.current!,
+        {
+          publicKey: "kVW3QDXhXU80eY_-F",
+        },
+      );
       toast({
         title: "Message sent!",
         description: "Thanks for reaching out. I'll get back to you soon.",
       });
       setFormData({ name: "", email: "", subject: "", message: "" });
-    }, 1500);
+    } catch {
+      toast({
+        title: "Error sending message",
+        description: "Please try again later or contact me directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
-    <section id="contact" className="py-20 bg-white">
+    <section id="contact" className="py-24 bg-transparent">
       <div className="section-container">
         <h2 className="section-title">Get In Touch</h2>
+        <p className="text-center text-muted-foreground max-w-2xl mx-auto mb-16">
+          Have a project in mind or want to chat? Fill out the form or contact
+          me directly.
+        </p>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-16">
-          <div>
-            <h3 className="text-2xl font-bold mb-6">Contact Information</h3>
-            <p className="text-gray-600 mb-8">
-              Have a project in mind or want to chat? Fill out the form or
-              contact me directly using the information below.
-            </p>
-
-            <div className="space-y-6">
-              <div className="flex items-start">
-                <div className="flex-shrink-0 mt-1">
-                  <Mail className="h-6 w-6 text-portfolio-blue" />
-                </div>
-                <div className="ml-4">
-                  <h4 className="text-lg font-semibold">Email</h4>
-                  <a
-                    href="mailto:john.doe@example.com"
-                    className="text-gray-600 hover:text-portfolio-blue transition-colors"
-                  >
-                    sanujansanu1998@gmail.com
-                  </a>
-                </div>
-              </div>
-
-              <div className="flex items-start">
-                <div className="flex-shrink-0 mt-1">
-                  <Phone className="h-6 w-6 text-portfolio-blue" />
-                </div>
-                <div className="ml-4">
-                  <h4 className="text-lg font-semibold">Phone</h4>
-                  <a
-                    href="tel:+11234567890"
-                    className="text-gray-600 hover:text-portfolio-blue transition-colors"
-                  >
-                    +94 75 628 9756
-                  </a>
-                </div>
-              </div>
-
-              <div className="flex items-start">
-                <div className="flex-shrink-0 mt-1">
-                  <MapPin className="h-6 w-6 text-portfolio-blue" />
-                </div>
-                <div className="ml-4">
-                  <h4 className="text-lg font-semibold">Location</h4>
-                  <p className="text-gray-600">
-                    Karaitivu, Ampara, Sri Lanka , 32250
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-12">
-              <h3 className="text-2xl font-bold mb-6">Availability</h3>
-              <p className="text-gray-600">
-                I'm currently available for freelance work or full-time
-                positions. I'm also open to discussing potential collaborations
-                or project ideas.
-              </p>
-              <div className="mt-4 inline-block bg-green-100 px-4 py-2 rounded-full">
-                <p className="font-medium text-green-800 text-sm flex items-center">
-                  <span className="h-3 w-3 bg-green-500 rounded-full inline-block mr-2"></span>
-                  Available for new opportunities
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <div className="bg-gray-50 p-8 rounded-lg shadow-md">
-              <h3 className="text-2xl font-bold mb-6">Send me a message</h3>
-
-              <form onSubmit={handleSubmit} ref={formRef} className="space-y-6">
-                <div className="space-y-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          {/* Contact Info */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="space-y-8"
+          >
+            <Card className="bg-gradient-to-br from-primary/10 to-accent/5 border-none shadow-sm">
+              <CardContent className="p-8 space-y-8">
+                <div className="flex items-center space-x-4">
+                  <div className="bg-background p-3 rounded-full shadow-sm">
+                    <Mail className="h-6 w-6 text-primary" />
+                  </div>
                   <div>
-                    <label
-                      htmlFor="name"
-                      className="block text-sm font-medium text-gray-700 mb-1"
+                    <h4 className="text-lg font-semibold">Email</h4>
+                    <a
+                      href="mailto:sanujansanu1998@gmail.com"
+                      className="text-muted-foreground hover:text-primary transition-colors"
                     >
-                      Your Name
-                    </label>
-                    <Input
-                      id="name"
-                      name="name"
-                      type="text"
-                      required
-                      value={formData.name}
-                      onChange={handleChange}
-                      placeholder="John Doe"
-                    />
+                      sanujansanu1998@gmail.com
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex items-center space-x-4">
+                  <div className="bg-background p-3 rounded-full shadow-sm">
+                    <Phone className="h-6 w-6 text-primary" />
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold">Phone</h4>
+                    <a
+                      href="tel:+94756289756"
+                      className="text-muted-foreground hover:text-primary transition-colors"
+                    >
+                      +94 75 628 9756
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex items-center space-x-4">
+                  <div className="bg-background p-3 rounded-full shadow-sm">
+                    <MapPin className="h-6 w-6 text-primary" />
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold">Location</h4>
+                    <p className="text-muted-foreground">
+                      Karaitivu, Ampara, Sri Lanka
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-card border-border">
+              <CardContent className="p-6">
+                <h3 className="text-xl font-bold mb-4">Availability status</h3>
+                <div className="flex items-center gap-3 bg-green-500/10 px-4 py-3 rounded-lg text-green-600 dark:text-green-400 border border-green-500/20">
+                  <span className="relative flex h-3 w-3">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                  </span>
+                  <span className="font-medium">
+                    Available for new opportunities
+                  </span>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+
+          {/* Contact Form */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+          >
+            <Card>
+              <CardContent className="p-8">
+                <form
+                  onSubmit={handleSubmit}
+                  ref={formRef}
+                  className="space-y-6"
+                >
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <label htmlFor="name" className="text-sm font-medium">
+                        Your Name
+                      </label>
+                      <Input
+                        id="name"
+                        name="name"
+                        placeholder="John Doe"
+                        required
+                        value={formData.name}
+                        onChange={handleChange}
+                        className="bg-muted/50"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label htmlFor="email" className="text-sm font-medium">
+                        Email Address
+                      </label>
+                      <Input
+                        id="email"
+                        name="email"
+                        type="email"
+                        placeholder="john@example.com"
+                        required
+                        value={formData.email}
+                        onChange={handleChange}
+                        className="bg-muted/50"
+                      />
+                    </div>
                   </div>
 
-                  <div>
-                    <label
-                      htmlFor="email"
-                      className="block text-sm font-medium text-gray-700 mb-1"
-                    >
-                      Email Address
-                    </label>
-                    <Input
-                      id="email"
-                      name="email"
-                      type="email"
-                      required
-                      value={formData.email}
-                      onChange={handleChange}
-                      placeholder="john@example.com"
-                    />
-                  </div>
-
-                  <div>
-                    <label
-                      htmlFor="subject"
-                      className="block text-sm font-medium text-gray-700 mb-1"
-                    >
+                  <div className="space-y-2">
+                    <label htmlFor="subject" className="text-sm font-medium">
                       Subject
                     </label>
                     <Input
                       id="subject"
                       name="subject"
-                      type="text"
+                      placeholder="Project Inquiry"
                       required
                       value={formData.subject}
                       onChange={handleChange}
-                      placeholder="Project Inquiry"
+                      className="bg-muted/50"
                     />
                   </div>
 
-                  <div>
-                    <label
-                      htmlFor="message"
-                      className="block text-sm font-medium text-gray-700 mb-1"
-                    >
+                  <div className="space-y-2">
+                    <label htmlFor="message" className="text-sm font-medium">
                       Message
                     </label>
                     <Textarea
                       id="message"
                       name="message"
+                      placeholder="Tell me about your project..."
+                      rows={5}
                       required
                       value={formData.message}
                       onChange={handleChange}
-                      placeholder="I'd like to discuss a potential project..."
-                      rows={5}
+                      className="bg-muted/50 resize-none"
                     />
                   </div>
-                </div>
 
-                <Button
-                  type="submit"
-                  className="w-full bg-portfolio-blue hover:bg-portfolio-darkBlue"
-                  disabled={isSubmitting}
-                >
-                  {isSubmitting ? "Sending..." : "Send Message"}
-                </Button>
-              </form>
-            </div>
-          </div>
+                  <Button
+                    type="submit"
+                    className="w-full text-lg"
+                    size="lg"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? (
+                      <span className="animate-pulse">Sending...</span>
+                    ) : (
+                      <span className="flex items-center">
+                        Send Message <Send className="ml-2 h-4 w-4" />
+                      </span>
+                    )}
+                  </Button>
+                </form>
+              </CardContent>
+            </Card>
+          </motion.div>
         </div>
       </div>
     </section>

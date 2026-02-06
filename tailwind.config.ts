@@ -1,5 +1,6 @@
 
 import type { Config } from "tailwindcss";
+import tailwindAnimate from "tailwindcss-animate";
 
 export default {
 	darkMode: ["class"],
@@ -19,6 +20,10 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				sans: ['Inter', 'sans-serif'],
+				heading: ['Poppins', 'sans-serif'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -53,16 +58,6 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				// Custom portfolio colors
-				portfolio: {
-					blue: '#0EA5E9',
-					darkBlue: '#0369A1',
-					teal: '#14B8A6',
-					darkTeal: '#0F766E',
-					gray: '#64748B',
-					darkGray: '#334155',
-					light: '#F8FAFC',
-				},
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -82,13 +77,18 @@ export default {
 					from: { opacity: "0", transform: "translateY(10px)" },
 					to: { opacity: "1", transform: "translateY(0)" },
 				},
+				"slideUp": {
+					from: { opacity: "0", transform: "translateY(20px)" },
+					to: { opacity: "1", transform: "translateY(0)" },
+				}
 			},
 			animation: {
 				"accordion-down": "accordion-down 0.2s ease-out",
 				"accordion-up": "accordion-up 0.2s ease-out",
 				"fadeIn": "fadeIn 0.5s ease-out forwards",
+				"slideUp": "slideUp 0.5s ease-out forwards",
 			}
 		}
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [tailwindAnimate],
 } satisfies Config;
