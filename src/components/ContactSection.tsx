@@ -6,7 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Mail, MapPin, Phone, Send } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Card, CardContent } from "@/components/ui/card";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 
 const ContactSection = () => {
   const { toast } = useToast();
@@ -18,6 +18,16 @@ const ContactSection = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const formRef = useRef<HTMLFormElement | null>(null);
+
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const springConfig = { damping: 15, stiffness: 50, mass: 0.5 };
+  const xSpring = useSpring(useTransform(x, (val) => val * 0.05), springConfig);
+  const ySpring = useSpring(useTransform(y, (val) => val * 0.05), springConfig);
+  
+  const xSpringInverse = useSpring(useTransform(x, (val) => val * -0.05), springConfig);
+  const ySpringInverse = useSpring(useTransform(y, (val) => val * -0.05), springConfig);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -60,7 +70,17 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="py-24 bg-transparent">
+    <section 
+      id="contact" 
+      className="py-24 bg-transparent"
+      onMouseMove={(e) => {
+        const { clientX, clientY } = e;
+        const centerX = window.innerWidth / 2;
+        const centerY = window.innerHeight / 2;
+        x.set(clientX - centerX);
+        y.set(clientY - centerY);
+      }}
+    >
       <div className="section-container">
         <h2 className="section-title">Get In Touch</h2>
         <p className="text-center text-muted-foreground max-w-2xl mx-auto mb-16">
@@ -75,6 +95,7 @@ const ContactSection = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
+            style={{ x: xSpring, y: ySpring }}
             className="space-y-8"
           >
             <Card className="bg-gradient-to-br from-primary/10 to-accent/5 border-none shadow-sm">
@@ -145,6 +166,7 @@ const ContactSection = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
+            style={{ x: xSpringInverse, y: ySpringInverse }}
           >
             <Card>
               <CardContent className="p-8">

@@ -1,14 +1,32 @@
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { ArrowRight, Download, Github, Linkedin, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { TypewriterText } from "./TypewriterText";
+import { HeroBackground } from "./HeroBackground";
 
 const HeroSection = () => {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const springConfig = { damping: 20, stiffness: 100, mass: 0.5 };
+  
+  const xSpring = useSpring(x, springConfig);
+  const ySpring = useSpring(y, springConfig);
+
   return (
     <section
       id="home"
       className="relative min-h-screen flex items-center justify-center pt-16 overflow-hidden"
+      onMouseMove={(e) => {
+        const { clientX, clientY } = e;
+        const rect = e.currentTarget.getBoundingClientRect();
+        x.set(clientX - rect.left);
+        y.set(clientY - rect.top);
+      }}
     >
+      {/* Interactive Particle Background */}
+      <HeroBackground mouseX={xSpring} mouseY={ySpring} />
+
       <div className="section-container relative z-10 w-full">
         <div className="flex flex-col items-center text-center max-w-4xl mx-auto space-y-8">
           {/* Badge */}
