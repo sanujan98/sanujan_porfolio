@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import About from "../assets/IMG_0036.jpg";
 import { Download } from "lucide-react";
 import { motion } from "framer-motion";
-
+import mycv from "../assets/Sanujan_Update_CV.pdf";
 const AboutSection = () => {
   return (
     <section id="about" className="py-24 bg-transparent">
@@ -49,7 +49,7 @@ const AboutSection = () => {
 
             <div className="pt-4">
               <Button asChild className="gap-2">
-                <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+                <a href={mycv} target="_blank" rel="noopener noreferrer">
                   <Download className="w-4 h-4" /> Download Resume
                 </a>
               </Button>

@@ -96,7 +96,7 @@ const Navbar = () => {
                 size="sm"
                 className="bg-primary hover:bg-primary/90 text-primary-foreground"
               >
-                <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+                <a href={mycv} target="_blank" rel="noopener noreferrer">
                   Resume
                 </a>
               </Button>
